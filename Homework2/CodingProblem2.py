@@ -1,7 +1,7 @@
 #Name: Juan Gonzalez
 #ID: 1808943
 
-#Stage A
+#Stage B
 
 from datetime import date
 
@@ -16,8 +16,6 @@ def sentenceWorks(sentence):
             return True
         else:
             return False
-    else:
-        return False
 
 def getMonth(sentence):
     if 'January' in sentence:
@@ -59,7 +57,7 @@ def getDay(sentence):
         return finDay
 
 def getYear(sentence):
-    yearList = [sentence[-4], sentence[-3], sentence[-2], sentence[-1]]
+    yearList = [sentence[-5], sentence[-4], sentence[-3], sentence[-2]]
     yearJoin = ''.join(yearList)
     year = str(yearJoin)
     return year
@@ -79,11 +77,16 @@ def pastorpres(sentence):
             else:
                 return False
 
-ogSent = input()
+file = open('inputDates.txt')
 
-if sentenceWorks(ogSent):
-    tempDate = [getMonth(ogSent), getDay(ogSent), getYear(ogSent)]
-    dateJoin = '/'.join(tempDate)
-    work = pastorpres(ogSent)
-    if work:
-        print(dateJoin)
+for line in file:
+    if sentenceWorks(line):
+        tempDate = [getMonth(line), getDay(line), getYear(line)]
+        dateJoin = '/'.join(tempDate)
+        work = pastorpres(line)
+        if work:
+            print(dateJoin)
+    else:
+        break
+
+file.close()
