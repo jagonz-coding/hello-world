@@ -1,7 +1,7 @@
 #Name: Juan Gonzalez
 #ID: 1808943
 
-#Stage B
+#Stage C
 
 from datetime import date
 
@@ -78,6 +78,9 @@ def pastorpres(sentence):
                 return False
 
 file = open('inputDates.txt')
+wFile = open('parsedDates.txt', 'w')
+
+pDatesList = []
 
 for line in file:
     if sentenceWorks(line):
@@ -86,7 +89,10 @@ for line in file:
         work = pastorpres(line)
         if work:
             print(dateJoin)
+            wFile.write(str(dateJoin))
+            wFile.write('\n')
     else:
         break
 
 file.close()
+wFile.close()
